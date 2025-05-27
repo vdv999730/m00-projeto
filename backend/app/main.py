@@ -1,7 +1,15 @@
 from fastapi import FastAPI
 
-app = FastAPI()
+from app.api import router as api_router
+
+app = FastAPI(
+    title="API m00",
+    description="Backend principal do projeto m00",
+    version="1.0.0"
+)
 
 @app.get("/")
 def read_root():
-    return {"message": "API m00-projeto funcionando perfeitamente 🚀"}
+    return {"msg": "API rodando com sucesso"}
+
+app.include_router(api_router)
