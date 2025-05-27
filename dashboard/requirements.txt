@@ -1,2 +1,2 @@
-# requirements.txt
-# Conteúdo simulado para requirements.txt
+streamlit
+requests
