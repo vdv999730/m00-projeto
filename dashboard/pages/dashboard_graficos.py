@@ -1,2 +1,4 @@
-# dashboard_graficos.py
-# Conteúdo simulado para dashboard_graficos.py
+import streamlit as st
+
+st.title("📈 Gráficos e Análises")
+st.write("Página para visualização de gráficos e KPIs.")
