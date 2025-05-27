@@ -1,10 +1,8 @@
-FROM python:3.11-slim
+FROM python:3.11
 
-WORKDIR /app
+WORKDIR /code
 
-COPY ./app ./app
-COPY main.py .
-COPY requirements.txt .
+COPY . /code
 
 RUN pip install --no-cache-dir -r requirements.txt
 
