@@ -1,0 +1,22 @@
+
+## 🧠 Componentes
+
+- 🔥 Backend → FastAPI
+- 📊 Dashboard → Streamlit
+- 🗄️ Banco → PostgreSQL ou outro (ajustável)
+- 📝 Documentação → Markdown
+
+---
+
+## 🚀 Deploy
+
+- ✅ Configurado para Render.com
+- ✅ Backend → Porta 8000
+- ✅ Dashboard → Porta 8501
+- ✅ Banco → Mantém existente ou cria novo
+
+---
+
+## 👨‍💻 Autor
+
+Desenvolvido por [vdv999730](https://github.com/vdv999730)
