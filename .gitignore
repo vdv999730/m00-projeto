@@ -1,36 +1,7 @@
-# Python
 __pycache__/
-*.py[cod]
-*.egg-info/
-*.egg
-*.log
-*.sqlite3
-
-# Virtual Environments
-env/
-venv/
-ENV/
-.venv/
-
-# macOS
+*.pyc
+.env
 .DS_Store
-.AppleDouble
-.LSOverride
-
-# VS Code
+*.sqlite3
 .vscode/
-
-# PyCharm
 .idea/
-
-# System
-Thumbs.db
-ehthumbs.db
-Desktop.ini
-
-# Docker
-*.pid
-
-# Node (se algum dia tiver frontend)
-node_modules/
-dist/
