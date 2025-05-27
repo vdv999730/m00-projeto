@@ -1,2 +1,14 @@
-# estrutura.sql
-# Conteúdo simulado para estrutura.sql
+CREATE TABLE usuarios (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(100),
+    email VARCHAR(100) UNIQUE NOT NULL,
+    senha VARCHAR(100) NOT NULL,
+    criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE pedidos (
+    id SERIAL PRIMARY KEY,
+    usuario_id INTEGER REFERENCES usuarios(id),
+    status VARCHAR(50),
+    criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
