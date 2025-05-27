@@ -1,8 +1,11 @@
-# 🚀 m00-projeto
+# Projeto m00 – Backend + Dashboard + DB
 
-Projeto completo backend + dashboard + documentação + banco.
+## 🔥 Tecnologias
+- FastAPI (Backend)
+- Streamlit (Dashboard)
+- Docker e Docker Compose
+- Banco SQL (Modelo em SQL)
 
----
-
-## 🔗 Estrutura de Pastas
-
+## 🚀 Como rodar local
+```bash
+docker-compose up --build
