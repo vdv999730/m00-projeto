@@ -19,7 +19,7 @@ services:
 
   backend:
     build:
-      context: ./backend
+      context: ./backend/app
     container_name: m00-backend
     restart: unless-stopped
     ports:
