@@ -18,6 +18,11 @@ services:
       - m00-network
 
   backend:
+    environment:
+      PYTHONPATH: /app
+      DATABASE_URL: postgres://m00_user:m00_password@db:5432/m00_db
+      SECRET_KEY: sua_chave_secreta_aqui
+      ALGORITHM: HS256
     build:
       context: ./m00-projeto/backend
     container_name: m00-backend
