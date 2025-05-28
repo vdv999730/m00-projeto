@@ -16,22 +16,23 @@ services:
       - m00-network
 
 backend:
-    build:
-      context: ./backend
-    container_name: m00-backend
-    restart: unless-stopped
-    ports:
-      - "10000:10000"
-    environment:
-      PYTHONPATH: /app
-      DATABASE_URL: postgres://m00_user:m00_password@db:5432/m00_db
-      SECRET_KEY: sua_chave_secreta_aqui
-      ALGORITHM: HS256
-    depends_on:
-      - db
-    networks:
-      - m00-network
-    command: uvicorn main:app --host 0.0.0.0 --port 10000 --reload
+  build:
+    context: ./m00-projeto/backend
+  container_name: m00-backend
+  restart: unless-stopped
+  ports:
+    - "10000:10000"
+  environment:
+    PYTHONPATH: /app
+    DATABASE_URL: postgres://m00_user:m00_password@db:5432/m00_db
+    SECRET_KEY: sua_chave_secreta_aqui
+    ALGORITHM: HS256
+  depends_on:
+    - db
+  networks:
+    - m00-network
+  command: ["bash"]
+  #command: uvicorn main:app --host 0.0.0.0 --port 10000 --reload
     #2command: uvicorn main:app --host 0.0.0.0 --port 10000 --reload
     #3command: uvicorn app.main:app --host 0.0.0.0 --port 10000 --reload
     #4command: uvicorn main:app --host 0.0.0.0 --port 10000 --reload
