@@ -1,1 +1,1 @@
-# Pasta reservada para rotas da API
+# Init package
