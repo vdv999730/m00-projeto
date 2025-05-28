@@ -1,19 +1,16 @@
-# Usar uma imagem base Python
 FROM python:3.12-slim
 
-# Definir diretório de trabalho
 WORKDIR /app
 
-# Copiar o código da aplicação
-COPY ./backend/app /app
+# Copia código
+COPY ./app /app
 
-# Copiar o arquivo requirements.txt que está dentro da pasta backend
-COPY ./backend/requirements.txt /app
+# Copia requirements
+COPY ./requirements.txt /app
 
-# Instalar as dependências
+# Instala dependências
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Expor a porta
 EXPOSE 10000
 
 # Comando para rodar o backend
