@@ -37,6 +37,7 @@ services:
   dashboard:
     build:
       context: ./dashboard
+      dockerfile: Dockerfile
     container_name: m00-dashboard
     restart: unless-stopped
     ports:
