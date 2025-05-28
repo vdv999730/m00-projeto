@@ -19,7 +19,7 @@ services:
 
   backend:
     build:
-      context: ./backend
+      context: ./m00-projeto/backend
     container_name: m00-backend
     restart: unless-stopped
     ports:
@@ -40,8 +40,7 @@ services:
 
   dashboard:
     build:
-      #context: ./m00-projeto/dashboard
-      context: ./dashboard
+      context: ./m00-projeto/dashboard
       dockerfile: Dockerfile
     container_name: m00-dashboard
     restart: unless-stopped
