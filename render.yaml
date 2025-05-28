@@ -1,0 +1,30 @@
+services:
+  - type: web
+    name: m00-backend
+    env: docker
+    plan: free
+    rootDir: backend
+    autoDeploy: true
+    envVars:
+      - key: DATABASE_URL
+        value: postgres://<user>:<password>@<host>:<port>/<dbname>
+      - key: SECRET_KEY
+        value: sua_chave_secreta_aqui
+      - key: ALGORITHM
+        value: HS256
+    dockerfilePath: Dockerfile
+
+  - type: web
+    name: m00-dashboard
+    env: docker
+    plan: free
+    rootDir: dashboard
+    autoDeploy: true
+    dockerfilePath: Dockerfile
+
+databases:
+  - name: m00-db
+    plan: free
+    databaseName: m00_db
+    user: m00_user
+    region: oregon
