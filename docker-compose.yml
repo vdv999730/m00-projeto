@@ -32,8 +32,9 @@ services:
       - db
     networks:
       - m00-network
-    #command: uvicorn app.main:app --host 0.0.0.0 --port 10000 --reload
-    command: uvicorn main:app --host 0.0.0.0 --port 10000 --reload
+    #1command: uvicorn app.main:app --host 0.0.0.0 --port 10000 --reload
+    #2command: uvicorn main:app --host 0.0.0.0 --port 10000 --reload
+    command: uvicorn app.main:app --host 0.0.0.0 --port 10000 --reload
 
   dashboard:
     build:
