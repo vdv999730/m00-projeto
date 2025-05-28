@@ -35,6 +35,7 @@ services:
     #1command: uvicorn app.main:app --host 0.0.0.0 --port 10000 --reload
     #2command: uvicorn main:app --host 0.0.0.0 --port 10000 --reload
     #3command: uvicorn app.main:app --host 0.0.0.0 --port 10000 --reload
+    #4command: uvicorn main:app --host 0.0.0.0 --port 10000 --reload
     command: uvicorn main:app --host 0.0.0.0 --port 10000 --reload
 
   dashboard:
