@@ -1,10 +1,1 @@
-    __init__.py
-    main.py
-    api/
-        __init__.py
-        auth.py
-        dependencies.py
-    core/
-        __init__.py
-        security.py
-    ...
+# This file makes this directory a Python package.
