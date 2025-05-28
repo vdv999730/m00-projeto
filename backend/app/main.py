@@ -1,13 +1,14 @@
 from fastapi import FastAPI
 from api import auth
 
-# 🚀 Inicializa a aplicação
-app = FastAPI()
+app = FastAPI(
+    title="M00 Projeto API",
+    description="API Backend Online 🚀",
+    version="1.0.0"
+)
 
-# 🔗 Inclui as rotas de autenticação
 app.include_router(auth.router)
 
-# 🌎 Endpoint raiz → Teste rápido
 @app.get("/")
 def read_root():
     return {"message": "API Backend Online 🚀"}
