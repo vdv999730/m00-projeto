@@ -2,7 +2,6 @@ FROM python:3.12-slim
 
 WORKDIR /app
 
-# CORRIGIR AQUI: copie tudo diretamente para /app
 COPY ./app /app
 COPY requirements.txt /app
 
