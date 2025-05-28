@@ -9,4 +9,3 @@
         __init__.py
         security.py
     ...
-# Pasta reservada para rotas da API
