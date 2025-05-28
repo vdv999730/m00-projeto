@@ -1,1 +1,1 @@
-# Pasta reservada para rotas da API
+# This file makes this directory a Python package.
