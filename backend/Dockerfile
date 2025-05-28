@@ -7,7 +7,7 @@ COPY requirements.txt /app
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-EXPOSE 10000
+ENV PYTHONPATH=/app
 
 #1CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "10000"]
 #2CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "10000", "--reload"]
