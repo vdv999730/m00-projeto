@@ -35,7 +35,9 @@ services:
     #command: uvicorn app.main:app --host 0.0.0.0 --port 10000 --reload
     #command: uvicorn main:app --host 0.0.0.0 --port 10000 --reload
     #command: uvicorn main:app --host 0.0.0.0 --port 10000 --reload --app-dir /app
-    command: bash -c "PYTHONPATH=/app uvicorn main:app --host 0.0.0.0 --port 10000 --reload"
+    #command: bash -c "PYTHONPATH=/app uvicorn main:app --host 0.0.0.0 --port 10000 --reload"
+    command: >
+      bash -c "export PYTHONPATH=/app && uvicorn main:app --host 0.0.0.0 --port 10000 --reload"
 
   dashboard:
     build:
