@@ -1,14 +1,13 @@
 FROM python:3.12-slim
 
-# Define o diretório de trabalho dentro do container
 WORKDIR /app
 
-# Copia os arquivos para manter a estrutura app/
-COPY ./app /app/app
-COPY requirements.txt /app
+# Copia todos os arquivos do backend (inclui requirements.txt e pasta app)
+COPY . /app/
 
-# Instala as dependências
+# Garante que está copiando para /app/app
+RUN if [ ! -d "app" ]; then echo "ERRO: Pasta 'app' não copiada corretamente para o container"; exit 1; fi
+
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Inicia o servidor
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "10000", "--reload"]
