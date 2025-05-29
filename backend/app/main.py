@@ -1,5 +1,6 @@
 from fastapi import FastAPI
-from api import auth
+from app.main import app
+#from api import auth
 
 app = FastAPI(
     title="M00 Projeto API",
