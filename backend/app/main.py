@@ -1,6 +1,5 @@
 from fastapi import FastAPI
-from app.main import app
-#from api import auth
+from app.api import auth  # Corrigir se o path for diferente
 
 app = FastAPI(
     title="M00 Projeto API",
