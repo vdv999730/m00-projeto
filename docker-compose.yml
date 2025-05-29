@@ -17,7 +17,7 @@ services:
 
 backend:
   build:
-    context: ./m00-projeto/backend
+    context: ./backend
   container_name: m00-backend
   restart: unless-stopped
   ports:
