@@ -33,7 +33,10 @@ async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(
     )
     return {"access_token": access_token, "token_type": "bearer"}
 
-@router.get("/ping")
-def ping():
-    return {"pong": True}
+@router.get("/health")
+def health():
+    return {"status": "ok"}
 
+@router.get("/version")
+def version():
+    return {"version": "1.0.0", "system": "m00-backend"}
