@@ -8,7 +8,9 @@ app = FastAPI(
 )
 
 #app.include_router(auth.router)
-app.include_router(auth.router)  # ← sem prefixo
+#app.include_router(auth.router)  # ← sem prefixo
+app.include_router(auth.router, tags=["Auth"])
+
 
 @app.get("/")
 def read_root():
