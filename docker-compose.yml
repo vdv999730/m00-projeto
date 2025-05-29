@@ -41,7 +41,7 @@ services:
 
   dashboard:
     build:
-      context: ./m00-projeto/dashboard
+      context: ./dashboard
       dockerfile: Dockerfile
     container_name: m00-dashboard
     restart: unless-stopped
