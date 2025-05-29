@@ -15,30 +15,23 @@ services:
     networks:
       - m00-network
 
-backend:
-  build:
-    context: ./backend
-  container_name: m00-backend
-  restart: unless-stopped
-  ports:
-    - "10000:10000"
-  environment:
-    PYTHONPATH: /app
-    DATABASE_URL: postgres://m00_user:m00_password@db:5432/m00_db
-    SECRET_KEY: sua_chave_secreta_aqui
-    ALGORITHM: HS256
-  depends_on:
-    - db
-  networks:
-    - m00-network
-  command: uvicorn main:app --host 0.0.0.0 --port 10000 --reload
-    #command: uvicorn main:app --host 0.0.0.0 --port 10000 --reload
-    #command: ["bash"]
-    #command: uvicorn main:app --host 0.0.0.0 --port 10000 --reload
-    #2command: uvicorn main:app --host 0.0.0.0 --port 10000 --reload
-    #3command: uvicorn app.main:app --host 0.0.0.0 --port 10000 --reload
-    #4command: uvicorn main:app --host 0.0.0.0 --port 10000 --reload
-    #command: uvicorn main:app --host 0.0.0.0 --port 10000 --reload
+  backend:
+    build:
+      context: ./backend
+    container_name: m00-backend
+    restart: unless-stopped
+    ports:
+      - "10000:10000"
+    environment:
+      PYTHONPATH: /app
+      DATABASE_URL: postgres://m00_user:m00_password@db:5432/m00_db
+      SECRET_KEY: sua_chave_secreta_aqui
+      ALGORITHM: HS256
+    depends_on:
+      - db
+    networks:
+      - m00-network
+    command: uvicorn main:app --host 0.0.0.0 --port 10000 --reload
 
   dashboard:
     build:
@@ -51,7 +44,6 @@ backend:
     networks:
       - m00-network
     command: streamlit run app.py --server.port=8501 --server.address=0.0.0.0
-    #uvicorn app.main:app --host 0.0.0.0 --port 10000 --reload
 
 volumes:
   postgres_data:
