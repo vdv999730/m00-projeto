@@ -40,3 +40,7 @@ def health():
 @router.get("/version")
 def version():
     return {"version": "1.0.0", "system": "m00-backend"}
+
+@router.get("/ping")
+def ping():
+    return {"pong": True}
