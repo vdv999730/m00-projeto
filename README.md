@@ -72,19 +72,63 @@ streamlit run app.py
 → Acessa em: http://localhost:8501
 
 ☁️ Deploy no Render (Blueprint)
-1️⃣ Tenha o arquivo render.yaml na raiz.
+1. **Ajuste o arquivo `render.yaml`**  
+   - Garanta que `rootDir` aponte para `backend` e `dashboard`.  
+   - Preencha em `envVars` as suas variáveis:
+     ```yaml
+     services:
+       - name: m00-backend
+         rootDir: backend
+         envVars:
+           - key: DATABASE_URL
+             value: postgresql://<user>:<password>@<host>:<port>/<dbname>
+           - key: SECRET_KEY
+             value: <sua_chave_forte>
+       - name: m00-dashboard
+         rootDir: dashboard
+     ```
 
-2️⃣ Acesse https://render.com → New → Blueprint Deploy.
+2. **Commit & Push para o GitHub**  
+   ```bash
+   git add render.yaml
+   git commit -m "🔄 Atualiza deploy no Render"
+   git push origin main
 
-3️⃣ Insere o link do seu repositório GitHub.
+3. Configure as Env Vars no painel do Render
 
-4️⃣ O Render detecta e sobe:
+	Acesse: https://dashboard.render.com
 
-✅ Backend
+	Serviços → m00-backend → Environment
+	
+		# Database
+	DATABASE_URL=value: postgresql://matrix_db_2qsn_user:4vwvRr2W8HfEMQ7R78LKUGcKPMCe16lU@dpg-d0q819buibrs73dn90r0-a.oregon-postgres.render.com:5432/matrix_db_2qsn
 
-✅ Dashboard
+		# Security
+	SECRET_KEY=<4f294976b1a2a6bda9ff8a598609108e246002bf32aa6c8788da008466cc3542>
+ALGORITHM=HS256
 
-✅ Banco PostgreSQL
+# Streamlit (opcional)
+STREAMLIT_PORT=8501
+
+
+	Faça o mesmo em m00-dashboard (caso use variáveis).
+
+4. Verifique o build automático
+
+	Depois do push, o Render inicia o build automaticamente.
+
+	Acesse a aba Deploys do serviço e aguarde “Live” ou “Healthy”.
+
+5. Teste em produção
+# Backend
+curl https://backend-d4gi.onrender.com/
+# Dashboard
+open https://dashboard-oqd1.onrender.com/
+
+Confirme que o backend retorna {"message":"API Backend Online 🚀"}
+
+Confirme que o dashboard carrega sem erro.
+
 
 🔐 Variáveis de Ambiente (.env ou Render)
 Variável	Descrição
@@ -129,3 +173,16 @@ Subir tudo com docker-compose	docker-compose up --build
 ✔️ Operacional
 ✔️ Deploy automático funcionando
 ✔️ Pronto para produção e expansão
+
+## Getting Started
+
+### Pré-requisitos
+- Docker & Docker Compose
+- Git
+
+### Setup local
+1. Clone o repositório  
+   ```bash
+   git clone https://github.com/vdv999730/m00-projeto.git
+   cd m00-projeto
+

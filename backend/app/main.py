@@ -1,18 +1,15 @@
 from fastapi import FastAPI
-from app.api import auth  # Corrigir se o path for diferente
+from app.api import auth, tasks
 
-app = FastAPI(
-    title="M00 Projeto API",
-    description="API Backend Online 🚀",
-    version="1.0.0"
-)
+app = FastAPI(title="m00-backend")
 
-#app.include_router(auth.router)
-#app.include_router(auth.router)  # ← sem prefixo
-#app.include_router(auth.router, tags=["Auth"])
-app.include_router(auth.router, prefix="/auth", tags=["Auth"])
-
-
-@app.get("/")
-def read_root():
+# 1. Rota raiz de boas-vindas
+@app.get("/", tags=["root"])
+async def read_root():
     return {"message": "API Backend Online 🚀"}
+
+# 2. Rotas de Tasks
+app.include_router(tasks.router, prefix="/tasks", tags=["tasks"])
+
+# 3. Rotas de Auth
+app.include_router(auth.router, prefix="/auth", tags=["auth"])

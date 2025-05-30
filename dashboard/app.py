@@ -1,3 +1,5 @@
+API_URL = "https://backend-d4gi.onrender.com"
+
 import streamlit as st
 
 st.set_page_config(page_title="Dashboard m00", layout="wide")
