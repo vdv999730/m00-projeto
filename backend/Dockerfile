@@ -1,8 +1,8 @@
 FROM python:3.12-slim
 
 # Definir diretório de trabalho e PYTHONPATH
-WORKDIR /app
-ENV PYTHONPATH=/app
+WORKDIR /code
+ENV PYTHONPATH=/code
 
 # Copiar e instalar dependências
 COPY requirements.txt .  # <-- ajustado aqui
