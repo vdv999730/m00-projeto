@@ -20,19 +20,25 @@ ACCESS_TOKEN_EXPIRE_MINUTES = int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", 60 * 
 # OAuth2 bearer token
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="auth/token")
 
+
 # Funções de hash e verificação de senha
 def get_password_hash(password: str) -> str:
     return pwd_context.hash(password)
 
+
 def verify_password(plain_password: str, hashed_password: str) -> bool:
     return pwd_context.verify(plain_password, hashed_password)
+
 
 # Funções para criação e decodificação de JWT
 def create_access_token(data: dict, expires_delta: Optional[timedelta] = None) -> str:
     to_encode = data.copy()
-    expire = datetime.utcnow() + (expires_delta or timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES))
+    expire = datetime.utcnow() + (
+        expires_delta or timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+    )
     to_encode.update({"exp": expire})
     return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
+
 
 def decode_access_token(token: str) -> Optional[dict]:
     try:
@@ -40,6 +46,7 @@ def decode_access_token(token: str) -> Optional[dict]:
         return payload
     except JWTError:
         return None
+
 
 # Exceção padrão para credenciais inválidas
 def credentials_exception():
@@ -49,8 +56,11 @@ def credentials_exception():
         headers={"WWW-Authenticate": "Bearer"},
     )
 
+
 # Dependência para obter usuário atual a partir do token
-def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)) -> UserModel:
+def get_current_user(
+    token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)
+) -> UserModel:
     payload = decode_access_token(token)
     if payload is None or "sub" not in payload:
         raise credentials_exception()

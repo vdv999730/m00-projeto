@@ -2,26 +2,25 @@ from sqlalchemy.orm import Session
 from app.models.task import Task as TaskModel
 from app.schemas.task import TaskCreate, TaskUpdate
 
+
 def get_all_tasks(db: Session):
     """
     Retorna todas as tarefas no banco.
     """
     return db.query(TaskModel).all()
 
+
 def create_task(db: Session, task: TaskCreate):
     """
     Cria uma nova tarefa com os dados de TaskCreate,
     salva no banco e retorna o objeto criado (TaskModel).
     """
-    db_task = TaskModel(
-        title=task.title,
-        description=task.description,
-        completed=False
-    )
+    db_task = TaskModel(title=task.title, description=task.description, completed=False)
     db.add(db_task)
     db.commit()
     db.refresh(db_task)
     return db_task
+
 
 def update_task(db: Session, task_id: int, task: TaskUpdate):
     """
@@ -43,6 +42,7 @@ def update_task(db: Session, task_id: int, task: TaskUpdate):
     db.commit()
     db.refresh(db_task)
     return db_task
+
 
 def delete_task(db: Session, task_id: int):
     """

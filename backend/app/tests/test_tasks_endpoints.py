@@ -2,10 +2,12 @@
 
 # Testes CRUD para /tasks/
 
+
 def test_get_all_tasks_empty(client):
     response = client.get("/tasks/")
     # Pode retornar 200 com lista vazia ou 404, dependendo da implementação
     assert response.status_code in (200, 404)
+
 
 def test_create_task(client):
     payload = {"title": "Nova Tarefa", "description": "Descrição de teste"}
@@ -17,12 +19,14 @@ def test_create_task(client):
     assert data["completed"] is False
     assert "id" in data
 
+
 def test_get_all_tasks_non_empty(client):
     response = client.get("/tasks/")
     assert response.status_code == 200
     data = response.json()
     assert isinstance(data, list)
     assert len(data) >= 1
+
 
 def test_get_task_by_id(client):
     # Cria uma nova tarefa para garantir existe um ID
@@ -35,6 +39,7 @@ def test_get_task_by_id(client):
     data = response.json()
     assert data["id"] == task_id
     assert data["title"] == payload["title"]
+
 
 def test_update_task(client):
     # Cria uma nova tarefa
@@ -49,6 +54,7 @@ def test_update_task(client):
     assert data["id"] == task_id
     assert data["title"] == "Atualizado"
     assert data["completed"] is True
+
 
 def test_delete_task(client):
     # Cria uma nova tarefa

@@ -10,6 +10,7 @@ app = FastAPI(title="m00-backend")
 logger.info("Iniciando m00-backend")
 logger.info("=== Teste de gravação em arquivo de log ===")
 
+
 # Captura exceções HTTP
 @app.exception_handler(StarletteHTTPException)
 async def http_exception_handler(request: Request, exc: StarletteHTTPException):
@@ -18,6 +19,7 @@ async def http_exception_handler(request: Request, exc: StarletteHTTPException):
         status_code=exc.status_code,
         content={"error": exc.detail},
     )
+
 
 # Captura validações de requisição (Pydantic)
 @app.exception_handler(RequestValidationError)
@@ -28,6 +30,7 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
         content={"error": "Dados inválidos", "details": exc.errors()},
     )
 
+
 # Captura quaisquer outras exceções não tratadas
 @app.exception_handler(Exception)
 async def general_exception_handler(request: Request, exc: Exception):
@@ -37,11 +40,15 @@ async def general_exception_handler(request: Request, exc: Exception):
         content={"error": "Erro interno do servidor"},
     )
 
+
 @app.get("/", tags=["root"])
 async def read_root():
     logger.info("Rota raiz acessada")
     return {"message": "API Backend Online 🚀"}
 
+
 # 🚨 Inclusão correta dos routers
 app.include_router(tasks.router, prefix="/tasks", tags=["tasks"])
-app.include_router(auth.router)  # O router do auth já tem prefix "/auth" dentro do próprio arquivo
+app.include_router(
+    auth.router
+)  # O router do auth já tem prefix "/auth" dentro do próprio arquivo

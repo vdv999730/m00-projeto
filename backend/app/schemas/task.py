@@ -1,12 +1,14 @@
 from pydantic import BaseModel
 from typing import Optional
 
+
 # ------------------------------------------------------
 # Esquema base para criar/atualizar tarefas
 # ------------------------------------------------------
 class TaskBase(BaseModel):
     title: str
     description: Optional[str] = None
+
 
 # ------------------------------------------------------
 # Modelo usado ao criar nova tarefa (POST /tasks/)
