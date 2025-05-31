@@ -1,0 +1,16 @@
+# .dockerignore
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+db.sqlite3
+.env
+.env.*
+*.db
+*.sqlite3
+*.log
+logs/
+backend_logs/
+docker-compose.yml
+Dockerfile
