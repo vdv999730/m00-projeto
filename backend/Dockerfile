@@ -8,8 +8,9 @@ ENV PYTHONPATH=/code
 COPY requirements.txt .  # <-- ajustado aqui
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copiar todo o código do backend
-COPY . .
+# Copiar só o necessário
+COPY app ./app
+COPY pytest.ini .
 
 # Expor porta
 EXPOSE 10000
