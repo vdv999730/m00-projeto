@@ -74,7 +74,7 @@ jobs:
 
       - name: 🛠️ Build Backend Docker Image
         run: |
-          docker build --no-cache -t ${{ secrets.DOCKERHUB_USERNAME }}/m00-backend:latest -f backend/Dockerfile backend
+          docker build --no-cache --pull -t ${{ secrets.DOCKERHUB_USERNAME }}/m00-backend:latest -f backend/Dockerfile backend
 
   build_dashboard:
     name: 🐳 Build Dashboard Docker Image
@@ -89,7 +89,7 @@ jobs:
 
       - name: 🛠️ Build Dashboard Docker Image
         run: |
-          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/m00-dashboard:latest -f dashboard/Dockerfile .
+          docker build --no-cache --pull -t ${{ secrets.DOCKERHUB_USERNAME }}/m00-dashboard:latest -f dashboard/Dockerfile dashboard
 
 
   push_backend:
