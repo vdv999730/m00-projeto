@@ -1,28 +1,58 @@
-from typing import List
-from app.schemas.task import Task
+from sqlalchemy.orm import Session
+from app.models.task import Task as TaskModel
+from app.schemas.task import TaskCreate, TaskUpdate
 
-# _fake_db armazena tasks em memória
-_fake_db: List[Task] = []
-_next_id = 1
+def get_all_tasks(db: Session):
+    """
+    Retorna todas as tarefas no banco.
+    """
+    return db.query(TaskModel).all()
 
-def list_tasks() -> List[Task]:
-    return _fake_db
+def create_task(db: Session, task: TaskCreate):
+    """
+    Cria uma nova tarefa com os dados de TaskCreate,
+    salva no banco e retorna o objeto criado (TaskModel).
+    """
+    db_task = TaskModel(
+        title=task.title,
+        description=task.description,
+        completed=False
+    )
+    db.add(db_task)
+    db.commit()
+    db.refresh(db_task)
+    return db_task
 
-def create_task(task: Task) -> Task:
-    global _next_id
-    task.id = _next_id
-    _next_id += 1
-    _fake_db.append(task)
-    return task
+def update_task(db: Session, task_id: int, task: TaskUpdate):
+    """
+    Atualiza campos da tarefa (title, description ou completed).
+    Se não encontrar a tarefa, retorna None.
+    Caso encontre, aplica as alterações e retorna o objeto atualizado.
+    """
+    db_task = db.query(TaskModel).filter(TaskModel.id == task_id).first()
+    if not db_task:
+        return None
 
-def update_task(task_id: int, task_data: Task) -> Task:
-    for idx, t in enumerate(_fake_db):
-        if t.id == task_id:
-            updated = task_data.copy(update={"id": task_id})
-            _fake_db[idx] = updated
-            return updated
-    raise ValueError("Task not found")
+    if task.title is not None:
+        db_task.title = task.title
+    if task.description is not None:
+        db_task.description = task.description
+    if task.completed is not None:
+        db_task.completed = task.completed
 
-def delete_task(task_id: int) -> None:
-    global _fake_db
-    _fake_db = [t for t in _fake_db if t.id != task_id]
+    db.commit()
+    db.refresh(db_task)
+    return db_task
+
+def delete_task(db: Session, task_id: int):
+    """
+    Deleta a tarefa com o ID especificado.
+    Retorna True se deletou, False se não encontrou a tarefa.
+    """
+    db_task = db.query(TaskModel).filter(TaskModel.id == task_id).first()
+    if not db_task:
+        return False
+
+    db.delete(db_task)
+    db.commit()
+    return True

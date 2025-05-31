@@ -1,24 +1,20 @@
-from main import app
-from fastapi.testclient import TestClient
-
-client = TestClient(app)
-
-def test_root():
+# Testes para endpoints básicos (raiz e /auth/*)
+def test_read_root(client):
     response = client.get("/")
     assert response.status_code == 200
     assert response.json() == {"message": "API Backend Online 🚀"}
 
-def test_ping():
+def test_auth_ping(client):
     response = client.get("/auth/ping")
     assert response.status_code == 200
     assert response.json() == {"pong": True}
 
-def test_health():
+def test_auth_health(client):
     response = client.get("/auth/health")
     assert response.status_code == 200
     assert response.json() == {"status": "ok"}
 
-def test_version():
+def test_auth_version(client):
     response = client.get("/auth/version")
     assert response.status_code == 200
     data = response.json()

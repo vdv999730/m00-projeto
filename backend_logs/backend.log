@@ -1,0 +1,97 @@
+2025-05-31 03:31:48,668 | INFO | m00-backend | Iniciando m00-backend
+2025-05-31 03:31:48,668 | INFO | m00-backend | Iniciando m00-backend
+2025-05-31 03:31:48,668 | INFO | m00-backend | === Teste de gravação em arquivo de log ===
+2025-05-31 03:37:12,093 | INFO | m00-backend | Iniciando m00-backend
+2025-05-31 03:37:12,093 | INFO | m00-backend | Iniciando m00-backend
+2025-05-31 03:37:12,094 | INFO | m00-backend | === Teste de gravação em arquivo de log ===
+2025-05-31 03:39:43,791 | INFO | m00-backend | Iniciando m00-backend
+2025-05-31 03:39:43,791 | INFO | m00-backend | Iniciando m00-backend
+2025-05-31 03:39:43,792 | INFO | m00-backend | === Teste de gravação em arquivo de log ===
+2025-05-31 03:43:17,794 | INFO | m00-backend | Iniciando m00-backend
+2025-05-31 03:43:17,794 | INFO | m00-backend | Iniciando m00-backend
+2025-05-31 03:43:17,795 | INFO | m00-backend | === Teste de gravação em arquivo de log ===
+2025-05-31 03:44:58,217 | INFO | m00-backend | Iniciando m00-backend
+2025-05-31 03:44:58,217 | INFO | m00-backend | Iniciando m00-backend
+2025-05-31 03:44:58,218 | INFO | m00-backend | === Teste de gravação em arquivo de log ===
+2025-05-31 03:45:03,977 | INFO | m00-backend | Iniciando m00-backend
+2025-05-31 03:45:03,978 | INFO | m00-backend | Iniciando m00-backend
+2025-05-31 03:45:03,978 | INFO | m00-backend | === Teste de gravação em arquivo de log ===
+2025-05-31 03:48:43,751 | INFO | m00-backend | Iniciando m00-backend
+2025-05-31 03:48:43,751 | INFO | m00-backend | Iniciando m00-backend
+2025-05-31 03:48:43,751 | INFO | m00-backend | === Teste de gravação em arquivo de log ===
+2025-05-31 03:51:16,616 | INFO | m00-backend | Iniciando m00-backend
+2025-05-31 03:51:16,616 | INFO | m00-backend | Iniciando m00-backend
+2025-05-31 03:51:16,617 | INFO | m00-backend | === Teste de gravação em arquivo de log ===
+2025-05-31 03:56:34,536 | INFO | m00-backend | Iniciando m00-backend
+2025-05-31 03:56:34,536 | INFO | m00-backend | Iniciando m00-backend
+2025-05-31 03:56:34,536 | INFO | m00-backend | === Teste de gravação em arquivo de log ===
+2025-05-31 03:58:44,828 | INFO | m00-backend | Iniciando m00-backend
+2025-05-31 03:58:44,828 | INFO | m00-backend | Iniciando m00-backend
+2025-05-31 03:58:44,828 | INFO | m00-backend | === Teste de gravação em arquivo de log ===
+2025-05-31 04:18:03,931 | INFO | m00-backend | Iniciando m00-backend
+2025-05-31 04:18:03,932 | INFO | m00-backend | Iniciando m00-backend
+2025-05-31 04:18:03,932 | INFO | m00-backend | === Teste de gravação em arquivo de log ===
+2025-05-31 04:21:24,719 | INFO | m00-backend | Iniciando m00-backend
+2025-05-31 04:21:24,720 | INFO | m00-backend | Iniciando m00-backend
+2025-05-31 04:21:24,720 | INFO | m00-backend | === Teste de gravação em arquivo de log ===
+2025-05-31 04:24:10,293 | INFO | m00-backend | Iniciando m00-backend
+2025-05-31 04:24:10,294 | INFO | m00-backend | Iniciando m00-backend
+2025-05-31 04:24:10,294 | INFO | m00-backend | === Teste de gravação em arquivo de log ===
+2025-05-31 04:24:10,739 | ERROR | m00-backend | HTTP error 401 em http://testserver/auth/token: Usuário ou senha incorretos
+2025-05-31 04:24:11,664 | INFO | m00-backend | Rota raiz acessada
+2025-05-31 04:24:11,678 | ERROR | m00-backend | HTTP error 405 em http://testserver/tasks/2: Method Not Allowed
+2025-05-31 04:38:25,639 | INFO | m00-backend | Iniciando m00-backend
+2025-05-31 04:38:25,639 | INFO | m00-backend | Iniciando m00-backend
+2025-05-31 04:38:25,639 | INFO | m00-backend | === Teste de gravação em arquivo de log ===
+2025-05-31 04:38:26,086 | ERROR | m00-backend | HTTP error 401 em http://testserver/auth/token: Usuário ou senha incorretos
+2025-05-31 04:38:26,995 | INFO | m00-backend | Rota raiz acessada
+2025-05-31 04:38:27,004 | ERROR | m00-backend | HTTP error 404 em http://testserver/tasks/: Not Found
+2025-05-31 04:38:27,006 | ERROR | m00-backend | HTTP error 404 em http://testserver/tasks/: Not Found
+2025-05-31 04:45:06,013 | INFO | m00-backend | Iniciando m00-backend
+2025-05-31 04:45:06,013 | INFO | m00-backend | === Teste de gravação em arquivo de log ===
+2025-05-31 04:45:06,455 | ERROR | m00-backend | HTTP error 404 em http://testserver/auth/token: Not Found
+2025-05-31 04:49:00,710 | INFO | m00-backend | Iniciando m00-backend
+2025-05-31 04:49:00,710 | INFO | m00-backend | === Teste de gravação em arquivo de log ===
+2025-05-31 04:49:01,148 | ERROR | m00-backend | HTTP error 404 em http://testserver/auth/token: Not Found
+2025-05-31 04:51:48,123 | INFO | m00-backend | Iniciando m00-backend
+2025-05-31 04:51:48,124 | INFO | m00-backend | === Teste de gravação em arquivo de log ===
+2025-05-31 04:51:48,539 | ERROR | m00-backend | HTTP error 404 em http://testserver/auth/token: Not Found
+2025-05-31 05:01:19,415 | INFO | m00-backend | Iniciando m00-backend
+2025-05-31 05:01:19,415 | INFO | m00-backend | === Teste de gravação em arquivo de log ===
+2025-05-31 05:01:19,880 | ERROR | m00-backend | HTTP error 404 em http://testserver/auth/token: Not Found
+2025-05-31 18:07:05,088 | INFO | m00-backend | Iniciando m00-backend
+2025-05-31 18:07:05,089 | INFO | m00-backend | === Teste de gravação em arquivo de log ===
+2025-05-31 18:07:05,531 | ERROR | m00-backend | HTTP error 401 em http://testserver/auth/token: Usuário ou senha incorretos
+2025-05-31 18:07:06,443 | INFO | m00-backend | Rota raiz acessada
+2025-05-31 18:07:06,451 | ERROR | m00-backend | HTTP error 404 em http://testserver/tasks/: Not Found
+2025-05-31 18:07:06,452 | ERROR | m00-backend | HTTP error 404 em http://testserver/tasks/: Not Found
+2025-05-31 18:11:10,415 | INFO | m00-backend | Iniciando m00-backend
+2025-05-31 18:11:10,416 | INFO | m00-backend | === Teste de gravação em arquivo de log ===
+2025-05-31 18:11:43,063 | INFO | m00-backend | Iniciando m00-backend
+2025-05-31 18:11:43,064 | INFO | m00-backend | === Teste de gravação em arquivo de log ===
+2025-05-31 18:11:43,517 | ERROR | m00-backend | HTTP error 401 em http://testserver/auth/token: Usuário ou senha incorretos
+2025-05-31 18:11:44,429 | INFO | m00-backend | Rota raiz acessada
+2025-05-31 18:11:44,438 | ERROR | m00-backend | HTTP error 404 em http://testserver/tasks/: Not Found
+2025-05-31 18:11:44,440 | ERROR | m00-backend | HTTP error 404 em http://testserver/tasks/: Not Found
+2025-05-31 18:17:12,103 | INFO | m00-backend | Iniciando m00-backend
+2025-05-31 18:17:12,103 | INFO | m00-backend | === Teste de gravação em arquivo de log ===
+2025-05-31 18:17:30,253 | INFO | m00-backend | Iniciando m00-backend
+2025-05-31 18:17:30,253 | INFO | m00-backend | === Teste de gravação em arquivo de log ===
+2025-05-31 18:17:30,698 | ERROR | m00-backend | HTTP error 401 em http://testserver/auth/token: Usuário ou senha incorretos
+2025-05-31 18:17:31,620 | INFO | m00-backend | Rota raiz acessada
+2025-05-31 18:17:31,629 | ERROR | m00-backend | HTTP error 404 em http://testserver/tasks/: Not Found
+2025-05-31 18:17:31,630 | ERROR | m00-backend | HTTP error 404 em http://testserver/tasks/: Not Found
+2025-05-31 18:19:58,806 | INFO | m00-backend | Iniciando m00-backend
+2025-05-31 18:19:58,807 | INFO | m00-backend | === Teste de gravação em arquivo de log ===
+2025-05-31 18:20:17,828 | INFO | m00-backend | Iniciando m00-backend
+2025-05-31 18:20:17,828 | INFO | m00-backend | === Teste de gravação em arquivo de log ===
+2025-05-31 18:20:18,280 | ERROR | m00-backend | HTTP error 401 em http://testserver/auth/token: Usuário ou senha incorretos
+2025-05-31 18:20:19,214 | INFO | m00-backend | Rota raiz acessada
+2025-05-31 18:20:19,254 | ERROR | m00-backend | HTTP error 405 em http://testserver/tasks/2: Method Not Allowed
+2025-05-31 18:22:51,046 | INFO | m00-backend | Iniciando m00-backend
+2025-05-31 18:22:51,046 | INFO | m00-backend | === Teste de gravação em arquivo de log ===
+2025-05-31 18:23:08,099 | INFO | m00-backend | Iniciando m00-backend
+2025-05-31 18:23:08,099 | INFO | m00-backend | === Teste de gravação em arquivo de log ===
+2025-05-31 18:23:08,546 | ERROR | m00-backend | HTTP error 401 em http://testserver/auth/token: Usuário ou senha incorretos
+2025-05-31 18:23:09,453 | INFO | m00-backend | Rota raiz acessada
+2025-05-31 18:23:09,529 | ERROR | m00-backend | HTTP error 404 em http://testserver/tasks/4: Task não encontrada
