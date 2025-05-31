@@ -3,7 +3,10 @@ from logging.handlers import RotatingFileHandler
 import os
 
 # Diretório para armazenar logs
-LOG_DIR = os.getenv("LOG_DIR", "/app/logs")
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DEFAULT_LOG_DIR = os.path.join(BASE_DIR, "backend_logs")
+LOG_DIR = os.getenv("LOG_DIR", DEFAULT_LOG_DIR)
+
 os.makedirs(LOG_DIR, exist_ok=True)
 
 # Configuração básica do logger
