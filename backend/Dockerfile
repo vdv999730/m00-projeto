@@ -1,19 +1,15 @@
 FROM python:3.12-slim
 
-# Definir diretório de trabalho e PYTHONPATH
-WORKDIR /m00project
-ENV PYTHONPATH=/code
+# Trabalhar dentro de uma pasta no container
+WORKDIR /home/appuser/m00project
+ENV PYTHONPATH=/home/appuser/m00project
 
-# Copiar e instalar dependências
-COPY requirements.txt .  # <-- ajustado aqui
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copiar só o necessário
 COPY app ./app
 COPY pytest.ini .
 
-# Expor porta
 EXPOSE 10000
 
-# Comando padrão para iniciar o FastAPI
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "10000", "--reload"]
