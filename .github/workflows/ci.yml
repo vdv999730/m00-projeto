@@ -59,7 +59,7 @@ jobs:
       - name: 🔍 Run Tests
         run: |
           cd backend/app
-          PYTHONPATH=../ pytest --maxfail=1 --disable-warnings -q
+          PYTHONPATH=../ DATABASE_URL=sqlite:///./test.db pytest --maxfail=1 --disable-warnings -q
 
   build_backend:
     name: 🐳 Build Backend Docker Image
