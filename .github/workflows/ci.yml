@@ -59,7 +59,7 @@ jobs:
       - name: 🔍 Run Tests
         run: |
           cd backend/app
-          pytest --maxfail=1 --disable-warnings -q
+          PYTHONPATH=../ pytest --maxfail=1 --disable-warnings -q
 
   build_backend:
     name: 🐳 Build Backend Docker Image
