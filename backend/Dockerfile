@@ -5,7 +5,7 @@ WORKDIR /app
 ENV PYTHONPATH=/app
 
 # Copiar e instalar dependências
-COPY requirements.txt requirements.txt
+COPY requirements.txt .  # <-- ajustado aqui
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copiar todo o código do backend
