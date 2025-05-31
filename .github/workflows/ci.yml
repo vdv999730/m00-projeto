@@ -91,7 +91,6 @@ jobs:
         run: |
           docker build --no-cache --pull -t ${{ secrets.DOCKERHUB_USERNAME }}/m00-dashboard:latest -f dashboard/Dockerfile dashboard
 
-
   push_backend:
     name: ⬆️ Push Backend Docker Image
     runs-on: ubuntu-latest
