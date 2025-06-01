@@ -7,7 +7,6 @@ from app.core.database import get_db
 from app.schemas.task import TaskCreate, TaskUpdate, TaskResponse
 from app.models.task import Task as TaskModel
 from app.services.task_service import (
-    get_all_tasks,
     create_task,
     update_task,
     delete_task,
