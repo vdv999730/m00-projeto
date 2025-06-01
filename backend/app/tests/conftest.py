@@ -1,4 +1,3 @@
-import os
 import pytest
 import pytest_asyncio
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
@@ -8,9 +7,9 @@ from fastapi import FastAPI
 from app.core.database import Base, get_db
 from app.main import app as main_app
 
-DATABASE_URL_TEST = "sqlite+aiosqlite:///./test_db.sqlite3"
+DATABASE_URL_TEST = "sqlite+aiosqlite:///:memory:"
 
-# 1. Async Engine para testes
+# 1. Async Engine para testes (Banco em memória, rápido e sem arquivos)
 engine_test = create_async_engine(
     DATABASE_URL_TEST, connect_args={"check_same_thread": False}
 )
@@ -33,22 +32,15 @@ def app() -> FastAPI:
     return main_app
 
 
-# 4. Fixture para preparar e limpar o banco de testes
-@pytest_asyncio.fixture(scope="session", autouse=True)  # <- ALTERADO AQUI
+# 4. Fixture para preparar o banco de testes
+@pytest_asyncio.fixture(scope="function", autouse=True)
 async def prepare_database():
-    # Remove arquivo antigo se existir
-    if os.path.exists("./test_db.sqlite3"):
-        os.remove("./test_db.sqlite3")
-
-    # Cria tabelas
-    async with engine_test.begin() as conn:
-        await conn.run_sync(Base.metadata.create_all)
-    yield
-    # Apaga tabelas após testes
     async with engine_test.begin() as conn:
         await conn.run_sync(Base.metadata.drop_all)
-    if os.path.exists("./test_db.sqlite3"):
-        os.remove("./test_db.sqlite3")
+        await conn.run_sync(Base.metadata.create_all)
+    yield
+    async with engine_test.begin() as conn:
+        await conn.run_sync(Base.metadata.drop_all)
 
 
 # 5. AsyncClient Fixture para testes

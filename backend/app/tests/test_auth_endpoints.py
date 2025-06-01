@@ -8,7 +8,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 
 # 1. Fixture do AsyncClient
-@pytest.fixture
+@pytest_asyncio.fixture
 async def async_client(app: FastAPI):
     transport = ASGITransport(app=app)
     async with AsyncClient(transport=transport, base_url="http://testserver") as client:
@@ -24,7 +24,7 @@ async def test_login_invalid_user(async_client):
 
 
 # 3. Fixture para criar usuário de teste
-@pytest.fixture(scope="function", autouse=True)
+@pytest_asyncio.fixture(scope="function", autouse=True)
 async def create_test_user(app):
     # Acessa o banco assíncrono
     async with app.state._db() as session:
