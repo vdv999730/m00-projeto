@@ -5,14 +5,12 @@ from sqlalchemy.future import select
 from typing import List
 
 from app.core.database import get_db
-from app.schemas.task import TaskCreate, TaskUpdate, TaskResponse
+from app.schemas.task import TaskCreate, TaskResponse  # <- removido TaskUpdate
 from app.models.task import Task as TaskModel
 from app.services.task_service import (
     create_task,
-    update_task,
-    delete_task,
-)
-from app.services.audit_service import log_event  # <-- Só adicionei essa linha aqui.
+)  # <- removido update_task, delete_task
+from app.services.audit_service import log_event
 
 router = APIRouter(prefix="/tasks", tags=["tasks"])
 
