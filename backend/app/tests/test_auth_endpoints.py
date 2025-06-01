@@ -1,5 +1,5 @@
 import pytest
-from httpx import AsyncClient
+from fastapi.testclient import AsyncClient
 from app.core.security import get_password_hash
 from app.models.user import User as UserModel
 from sqlalchemy.ext.asyncio import AsyncSession
