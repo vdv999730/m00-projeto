@@ -4,6 +4,7 @@ from fastapi.exceptions import RequestValidationError
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from app.api import auth, tasks
+from app.api import audit
 from app.core.logging import logger
 
 # Inicialização do app
@@ -62,3 +63,4 @@ async def health_check():
 # app.include_router(auth.router)  # Prefix "/auth" já está no router
 app.include_router(tasks.router)
 app.include_router(auth.router)
+app.include_router(audit.router)
