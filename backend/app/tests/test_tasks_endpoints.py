@@ -3,10 +3,14 @@
 # Testes CRUD para /tasks/
 
 
-def test_get_all_tasks_empty(client):
-    response = client.get("/tasks/")
-    # Pode retornar 200 com lista vazia ou 404, dependendo da implementação
-    assert response.status_code in (200, 404)
+import pytest
+
+
+@pytest.mark.asyncio
+async def test_get_all_tasks_empty(async_client):
+    response = await async_client.get("/tasks")
+    assert response.status_code == 200
+    assert response.json() == []
 
 
 def test_create_task(client):
