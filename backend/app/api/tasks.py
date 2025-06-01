@@ -16,11 +16,22 @@ from app.services.task_service import (
 router = APIRouter(prefix="/tasks", tags=["tasks"])
 
 
-@router.get("/", response_model=List[TaskResponse])
-async def read_tasks(db: AsyncSession = Depends(get_db)):
-    result = await db.execute(select(TaskModel))
-    tasks = result.scalars().all()
-    return tasks
+# @router.get("/", response_model=List[TaskResponse])
+# async def read_tasks(db: AsyncSession = Depends(get_db)):
+#    result = await db.execute(select(TaskModel))
+#    tasks = result.scalars().all()
+#    return tasks
+
+
+@router.get("/{task_id}", response_model=TaskResponse)
+async def get_task_by_id(task_id: int, db: AsyncSession = Depends(get_db)):
+    result = await db.execute(select(TaskModel).where(TaskModel.id == task_id))
+    task = result.scalars().first()
+    if not task:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="Task não encontrada"
+        )
+    return task
 
 
 @router.post("/", response_model=TaskResponse)
