@@ -24,11 +24,6 @@ async def read_tasks(db: AsyncSession = Depends(get_db)):
     return tasks
 
 
-@router.get("/", response_model=List[TaskResponse])
-async def read_tasks(db: AsyncSession = Depends(get_db)):
-    return await get_all_tasks(db)
-
-
 @router.post("/", response_model=TaskResponse)
 async def create_new_task(task: TaskCreate, db: AsyncSession = Depends(get_db)):
     return await create_task(db, task)
