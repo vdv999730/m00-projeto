@@ -8,7 +8,7 @@ import pytest
 
 @pytest.mark.asyncio
 async def test_get_all_tasks_empty(async_client):
-    response = await async_client.get("/tasks")
+    response = await async_client.get("/tasks/")
     assert response.status_code == 200
     assert response.json() == []
 
