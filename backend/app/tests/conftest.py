@@ -1,6 +1,5 @@
-import os
 import pytest
-import pytest_asyncio  # <-- IMPORTAR AQUI!
+import pytest_asyncio
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.orm import sessionmaker
 from httpx import AsyncClient, ASGITransport
@@ -33,26 +32,19 @@ def app() -> FastAPI:
     return main_app
 
 
-# 4. Fixture para criar e destruir o banco de teste
-@pytest.fixture(scope="session", autouse=True)
+# 4. Fixture para preparar e limpar o banco de testes
+@pytest_asyncio.fixture(autouse=True)
 async def prepare_database():
-    # Remove arquivo antigo se existir
-    if os.path.exists("./test_db.sqlite3"):
-        os.remove("./test_db.sqlite3")
-
-    # Cria tabelas
-    async with engine_test.begin() as conn:
-        await conn.run_sync(Base.metadata.create_all)
-    yield
-    # Apaga tabelas
     async with engine_test.begin() as conn:
         await conn.run_sync(Base.metadata.drop_all)
-    if os.path.exists("./test_db.sqlite3"):
-        os.remove("./test_db.sqlite3")
+        await conn.run_sync(Base.metadata.create_all)
+    yield
+    async with engine_test.begin() as conn:
+        await conn.run_sync(Base.metadata.drop_all)
 
 
 # 5. AsyncClient Fixture para testes
-@pytest_asyncio.fixture  # <-- AQUI O CORRETO!
+@pytest_asyncio.fixture
 async def async_client(app: FastAPI):
     transport = ASGITransport(app=app)
     async with AsyncClient(transport=transport, base_url="http://testserver") as client:
