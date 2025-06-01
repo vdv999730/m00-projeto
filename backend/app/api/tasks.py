@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
+from sqlalchemy.future import select
 from typing import List
 
 from app.core.database import get_db
@@ -26,14 +27,11 @@ def create_new_task(task: TaskCreate, db: Session = Depends(get_db)):
 
 
 # 🚀 AQUI: ROTA DE GET POR ID (QUE FALTAVA!)
-@router.get("/{task_id}", response_model=TaskResponse)
-def read_task_by_id(task_id: int, db: Session = Depends(get_db)):
-    task = db.query(TaskModel).filter(TaskModel.id == task_id).first()
-    if not task:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND, detail="Task não encontrada"
-        )
-    return task
+@router.get("/tasks/")
+async def get_tasks(db: AsyncSession = Depends(get_db)):
+    result = await db.execute(select(TaskModel))
+    tasks = result.scalars().all()
+    return tasks
 
 
 @router.put("/{task_id}", response_model=TaskResponse)
