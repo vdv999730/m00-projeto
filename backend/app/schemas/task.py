@@ -14,7 +14,7 @@ class TaskBase(BaseModel):
 # Modelo usado ao criar nova tarefa (POST /tasks/)
 # ------------------------------------------------------
 class TaskCreate(TaskBase):
-    pass
+    completed: bool = False
 
 
 # ------------------------------------------------------
