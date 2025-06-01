@@ -5,7 +5,10 @@ from sqlalchemy.future import select
 from app.core.database import get_db
 from app.models.audit import AuditLog
 
-router = APIRouter(prefix="/audit", tags=["Audit Logs"])
+router = APIRouter(
+    prefix="/audit",
+    tags=["Audit Logs"],
+)
 
 
 @router.get("/logs")
