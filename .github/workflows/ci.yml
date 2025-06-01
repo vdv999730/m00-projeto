@@ -61,7 +61,6 @@ jobs:
           cd backend/app
           PYTHONPATH=../ DATABASE_URL=sqlite:///./test.db pytest --maxfail=1 --disable-warnings -q
 
-
   build_backend:
     name: 🐳 Build Backend Docker Image
     runs-on: ubuntu-latest
