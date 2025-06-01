@@ -1,7 +1,6 @@
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, status, Body
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
-
 from typing import List
 
 from app.core.database import get_db
@@ -25,7 +24,9 @@ async def get_task_by_id(task_id: int, db: AsyncSession = Depends(get_db)):
 
 
 @router.post("/", response_model=TaskResponse)
-async def create_new_task(task: TaskCreate, db: AsyncSession = Depends(get_db)):
+async def create_new_task(
+    task: TaskCreate = Body(...), db: AsyncSession = Depends(get_db)
+):
     task_created = await create_task(db, task)
     await log_event(
         db, user_id=None, action="TASK_CREATED", details=f"Task ID {task_created.id}"
