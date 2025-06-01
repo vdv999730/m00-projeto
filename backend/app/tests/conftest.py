@@ -28,6 +28,7 @@ async def override_get_db():
 @pytest.fixture(scope="session")
 def app() -> FastAPI:
     main_app.dependency_overrides[get_db] = override_get_db
+    main_app.state._db = AsyncSessionLocal
     return main_app
 
 
