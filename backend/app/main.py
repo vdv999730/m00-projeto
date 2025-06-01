@@ -31,9 +31,15 @@ async def http_exception_handler(request: Request, exc: StarletteHTTPException):
 @app.exception_handler(RequestValidationError)
 async def validation_exception_handler(request: Request, exc: RequestValidationError):
     logger.error(f"Validation error em {request.url}: {exc.errors()}")
+    error_details = exc.errors()
+    # Garantir que error_details é JSON serializable
+    safe_details = [
+        {k: (v.decode() if isinstance(v, bytes) else v) for k, v in err.items()}
+        for err in error_details
+    ]
     return JSONResponse(
         status_code=422,
-        content={"error": "Dados inválidos", "details": exc.errors()},
+        content={"error": "Dados inválidos", "details": safe_details},
     )
 
 
