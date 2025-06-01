@@ -1,3 +1,4 @@
+import os
 import pytest
 import pytest_asyncio
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
@@ -33,14 +34,21 @@ def app() -> FastAPI:
 
 
 # 4. Fixture para preparar e limpar o banco de testes
-@pytest_asyncio.fixture(autouse=True)
+@pytest_asyncio.fixture(scope="session", autouse=True)  # <- ALTERADO AQUI
 async def prepare_database():
+    # Remove arquivo antigo se existir
+    if os.path.exists("./test_db.sqlite3"):
+        os.remove("./test_db.sqlite3")
+
+    # Cria tabelas
     async with engine_test.begin() as conn:
-        await conn.run_sync(Base.metadata.drop_all)
         await conn.run_sync(Base.metadata.create_all)
     yield
+    # Apaga tabelas após testes
     async with engine_test.begin() as conn:
         await conn.run_sync(Base.metadata.drop_all)
+    if os.path.exists("./test_db.sqlite3"):
+        os.remove("./test_db.sqlite3")
 
 
 # 5. AsyncClient Fixture para testes
