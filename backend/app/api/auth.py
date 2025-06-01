@@ -1,6 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordRequestForm
-from sqlalchemy.orm import Session
 from sqlalchemy.ext.asyncio import AsyncSession  # [NOVO] Para async DB
 from sqlalchemy.future import select  # [NOVO] Select assíncrono para buscar usuário
 from datetime import timedelta

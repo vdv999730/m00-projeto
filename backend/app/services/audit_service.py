@@ -1,7 +1,6 @@
 # backend/app/services/audit_service.py
 
 from app.models.audit import AuditLog
-from app.core.database import get_db
 from sqlalchemy.ext.asyncio import AsyncSession
 
 
