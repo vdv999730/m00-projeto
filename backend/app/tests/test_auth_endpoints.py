@@ -2,6 +2,7 @@ import pytest
 from fastapi import FastAPI
 from httpx import AsyncClient
 from httpx import ASGITransport
+import pytest_asyncio
 from app.core.security import get_password_hash
 from app.models.user import User as UserModel
 from sqlalchemy.ext.asyncio import AsyncSession
