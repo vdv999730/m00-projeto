@@ -13,10 +13,11 @@ from app.services.task_service import (
     delete_task,
 )
 
-router = APIRouter()
+# router = APIRouter()
+router = APIRouter(prefix="/tasks", tags=["tasks"])
 
 
-@router.get("/tasks/{task_id}", response_model=TaskResponse)
+@router.get("/{task_id}", response_model=TaskResponse)
 async def get_task_by_id(task_id: int, db: AsyncSession = Depends(get_db)):
     result = await db.execute(select(TaskModel).where(TaskModel.id == task_id))
     task = result.scalars().first()
