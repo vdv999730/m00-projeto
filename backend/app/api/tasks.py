@@ -16,6 +16,17 @@ from app.services.task_service import (
 router = APIRouter()
 
 
+@router.get("/tasks/{task_id}", response_model=TaskResponse)
+async def get_task_by_id(task_id: int, db: AsyncSession = Depends(get_db)):
+    result = await db.execute(select(TaskModel).where(TaskModel.id == task_id))
+    task = result.scalars().first()
+    if not task:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="Task não encontrada"
+        )
+    return task
+
+
 @router.get("/", response_model=List[TaskResponse])
 async def read_tasks(db: AsyncSession = Depends(get_db)):
     return await get_all_tasks(db)
@@ -53,14 +64,3 @@ async def delete_existing_task(task_id: int, db: AsyncSession = Depends(get_db))
             status_code=status.HTTP_404_NOT_FOUND, detail="Task não encontrada"
         )
     return
-
-
-@router.get("/tasks/{task_id}", response_model=TaskResponse)
-async def get_task_by_id(task_id: int, db: AsyncSession = Depends(get_db)):
-    result = await db.execute(select(TaskModel).where(TaskModel.id == task_id))
-    task = result.scalars().first()
-    if not task:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND, detail="Task não encontrada"
-        )
-    return task
