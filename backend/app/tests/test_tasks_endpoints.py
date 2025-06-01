@@ -4,13 +4,6 @@ import pytest
 
 
 @pytest.mark.asyncio
-async def test_get_all_tasks_empty(async_client):
-    response = await async_client.get("/tasks/")
-    assert response.status_code == 200
-    assert response.json() == []
-
-
-@pytest.mark.asyncio
 async def test_create_task(async_client):
     payload = {"title": "Nova Tarefa", "description": "Descrição de teste"}
     response = await async_client.post("/tasks/", json=payload)
@@ -24,6 +17,11 @@ async def test_create_task(async_client):
 
 @pytest.mark.asyncio
 async def test_get_all_tasks_non_empty(async_client):
+    # Cria uma nova tarefa antes de buscar
+    payload = {"title": "Tarefa de Teste", "description": "Descrição de Teste"}
+    create_resp = await async_client.post("/tasks/", json=payload)
+    assert create_resp.status_code == 200
+
     response = await async_client.get("/tasks/")
     assert response.status_code == 200
     data = response.json()
@@ -75,3 +73,10 @@ async def test_delete_task(async_client):
     # Verifica que GET /tasks/{id} agora retorna 404
     get_resp = await async_client.get(f"/tasks/{task_id}")
     assert get_resp.status_code == 404
+
+
+@pytest.mark.asyncio
+async def test_get_all_tasks_empty(async_client):
+    response = await async_client.get("/tasks/")
+    assert response.status_code == 200
+    assert response.json() == []
