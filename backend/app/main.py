@@ -46,6 +46,7 @@ async def read_root():
     logger.info("Rota raiz acessada")
     return {"message": "API Backend Online 🚀"}
 
+
 @app.get("/", tags=["Health Check"])
 def root():
     return {"message": "Backend is up and running!"}
