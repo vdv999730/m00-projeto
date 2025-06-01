@@ -38,8 +38,10 @@ async def create_new_task(task: TaskCreate, db: AsyncSession = Depends(get_db)):
     return await create_task(db, task)
 
 
-@router.get("/tasks/")
+# @router.get("/tasks/")
+@router.get("/", response_model=List[TaskResponse])
 async def get_tasks(db: AsyncSession = Depends(get_db)):
+    # async def get_tasks(db: AsyncSession = Depends(get_db)):
     result = await db.execute(select(TaskModel))
     tasks = result.scalars().all()
     return tasks
