@@ -1,5 +1,6 @@
 import pytest
-from fastapi.testclient import AsyncClient
+from httpx import AsyncClient
+from httpx import ASGITransport
 from app.core.security import get_password_hash
 from app.models.user import User as UserModel
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -7,8 +8,9 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 # 1. Fixture do AsyncClient
 @pytest.fixture
-async def async_client(app):
-    async with AsyncClient(app=app, base_url="http://test") as client:
+async def async_client(app: FastAPI):
+    transport = ASGITransport(app=app)
+    async with AsyncClient(transport=transport, base_url="http://testserver") as client:
         yield client
 
 
