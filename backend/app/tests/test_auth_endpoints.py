@@ -2,7 +2,6 @@ import pytest
 from httpx import AsyncClient
 from app.core.security import get_password_hash
 from app.models.user import User as UserModel
-from app.core.database import get_db
 from sqlalchemy.ext.asyncio import AsyncSession
 
 
@@ -25,7 +24,7 @@ async def test_login_invalid_user(async_client):
 @pytest.fixture(scope="function", autouse=True)
 async def create_test_user(app):
     # Acessa o banco assíncrono
-    async with app.state._db() as session:  # Você pode precisar ajustar aqui dependendo da sua configuração
+    async with app.state._db() as session:
         db: AsyncSession = session
         user = UserModel(
             username="usuarioteste", hashed_password=get_password_hash("teste123")
