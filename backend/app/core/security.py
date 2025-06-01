@@ -4,7 +4,8 @@ from jose import JWTError, jwt
 from passlib.context import CryptContext
 from fastapi import HTTPException, status, Depends
 from fastapi.security import OAuth2PasswordBearer
-from sqlalchemy.orm import Session
+from sqlalchemy.future import select
+from sqlalchemy.ext.asyncio import AsyncSession
 from app.core.database import get_db
 from app.models.user import User as UserModel
 import os
@@ -58,14 +59,15 @@ def credentials_exception():
 
 
 # Dependência para obter usuário atual a partir do token
-def get_current_user(
-    token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)
+async def get_current_user(
+    token: str = Depends(oauth2_scheme), db: AsyncSession = Depends(get_db)
 ) -> UserModel:
     payload = decode_access_token(token)
     if payload is None or "sub" not in payload:
         raise credentials_exception()
     username: str = payload["sub"]
-    user = db.query(UserModel).filter(UserModel.username == username).first()
+    result = await db.execute(select(UserModel).where(UserModel.username == username))
+    user = result.scalars().first()
     if not user:
         raise credentials_exception()
     return user
