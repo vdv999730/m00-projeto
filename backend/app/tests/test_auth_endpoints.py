@@ -1,4 +1,5 @@
 import pytest
+from fastapi import FastAPI
 from httpx import AsyncClient
 from httpx import ASGITransport
 from app.core.security import get_password_hash
