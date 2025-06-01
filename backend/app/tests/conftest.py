@@ -1,5 +1,6 @@
 import os
 import pytest
+import pytest_asyncio  # <-- IMPORTAR AQUI!
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.orm import sessionmaker
 from httpx import AsyncClient, ASGITransport
@@ -51,7 +52,7 @@ async def prepare_database():
 
 
 # 5. AsyncClient Fixture para testes
-@pytest.fixture
+@pytest_asyncio.fixture  # <-- AQUI O CORRETO!
 async def async_client(app: FastAPI):
     transport = ASGITransport(app=app)
     async with AsyncClient(transport=transport, base_url="http://testserver") as client:
