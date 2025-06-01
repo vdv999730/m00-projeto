@@ -58,5 +58,7 @@ async def health_check():
 
 
 # 🚀 Inclusão dos routers
-app.include_router(tasks.router, prefix="/tasks", tags=["Tasks"])
-app.include_router(auth.router)  # Prefix "/auth" já está no router
+# app.include_router(tasks.router, prefix="/tasks", tags=["Tasks"])
+# app.include_router(auth.router)  # Prefix "/auth" já está no router
+app.include_router(tasks.router)
+app.include_router(auth.router)
