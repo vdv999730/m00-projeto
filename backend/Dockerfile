@@ -29,4 +29,4 @@ EXPOSE 10000
 ENV UVICORN_RELOAD=false
 
 # Rodar a aplicação
-CMD ["sh", "-c", "uvicorn app.main:app --host 0.0.0.0 --port 10000 ${UVICORN_RELOAD:+--reload} --workers 4"]
+CMD ["sh", "-c", "uvicorn app.main:app --host 0.0.0.0 --port $PORT ${UVICORN_RELOAD:+--reload} --workers 4"]
