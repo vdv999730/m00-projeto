@@ -1,7 +1,6 @@
-from fastapi import APIRouter, Depends, Body  # <- IMPORTANTE adicionar Body
+from fastapi import APIRouter, Depends, Body
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.core.database import get_db
-from app.models.audit import AuditLog
 from app.schemas.tasks import TaskCreate, TaskUpdate, TaskResponse
 from app.crud.tasks import (
     create_task,
