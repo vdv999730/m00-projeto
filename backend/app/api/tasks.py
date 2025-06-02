@@ -3,6 +3,8 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 from typing import List
 
+from fastapi import Body
+
 from app.core.database import get_db
 from app.schemas.task import TaskCreate, TaskUpdate, TaskResponse
 from app.models.task import Task as TaskModel
