@@ -16,6 +16,7 @@ jobs:
   lint:
     name: 🧹 Lint Code (Black + Flake8)
     runs-on: ubuntu-latest
+
     steps:
       - name: 📥 Checkout Code
         uses: actions/checkout@v4
@@ -25,13 +26,18 @@ jobs:
         with:
           python-version: ${{ env.PYTHON_VERSION }}
 
-      - name: Clear pip cache  # <--- ADICIONE ESTA LINHA
+      - name: Clear pip cache
         run: pip cache purge
 
       - name: 📚 Install Lint Dependencies
         run: |
           pip install --upgrade pip
           pip install black flake8
+
+      - name: 📚 Install Project Dependencies
+        run: |
+          pip install --no-cache-dir --upgrade pip
+          pip install --no-cache-dir -r backend/requirements.txt
 
       - name: 🧽 Run Black (Code Formatter)
         run: |
@@ -40,6 +46,7 @@ jobs:
       - name: 🔎 Run Flake8 (Linter)
         run: |
           flake8 backend --extend-ignore=E203,W503
+
 
   test:
     name: 🧪 Run Backend Tests
