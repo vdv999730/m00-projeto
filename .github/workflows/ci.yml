@@ -49,7 +49,7 @@ jobs:
 
       - name: 🧪 Run Tests
         run: |
-          PYTHONPATH=$(pwd) pytest
+          PYTHONPATH=./ pytest app/tests
 
 
   test:
