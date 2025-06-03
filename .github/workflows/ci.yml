@@ -31,9 +31,9 @@ jobs:
 
       - name: 📚 Install Lint Dependencies
         run: |
-        pip install --no-cache-dir --upgrade pip
-        pip install --no-cache-dir -r backend/requirements.txt
-        pip list
+          pip install --no-cache-dir --upgrade pip
+          pip install --no-cache-dir -r backend/requirements.txt
+          pip list
 
       - name: 🧽 Run Black (Code Formatter)
         run: |
