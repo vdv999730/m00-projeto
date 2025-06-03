@@ -1,5 +1,4 @@
 import pytest
-from app.models.task import Task as TaskModel
 from app.schemas.task import TaskCreate, TaskUpdate
 from app.services.task_service import (
     create_task,
