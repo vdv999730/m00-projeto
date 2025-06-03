@@ -1,11 +1,10 @@
 import os
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.orm import sessionmaker, declarative_base
-from sqlalchemy.ext.declarative import declarative_base
 
 DATABASE_URL = os.getenv("DATABASE_URL")
 
-# 🛠️ ATENÇÃO: mudar para async URL -> postgres+asyncpg
+# 🛠️ Corrigir para driver asyncpg
 DATABASE_URL = DATABASE_URL.replace("postgresql://", "postgresql+asyncpg://")
 
 # Criar engine assíncrono
