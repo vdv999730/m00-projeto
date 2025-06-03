@@ -48,8 +48,9 @@ jobs:
           flake8 backend --extend-ignore=E203,W503
 
       - name: 🧪 Run Tests
+        working-directory: backend
         run: |
-          PYTHONPATH=./ pytest app/tests
+          PYTHONPATH=$(pwd) pytest app/tests
 
 
   test:
