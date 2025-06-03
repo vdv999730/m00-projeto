@@ -49,7 +49,6 @@ jobs:
 
       - name: 🧪 Run Tests
         run: |
-          cd backend/app
           PYTHONPATH=$(pwd) pytest
 
 
