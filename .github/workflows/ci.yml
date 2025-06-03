@@ -25,6 +25,9 @@ jobs:
         with:
           python-version: ${{ env.PYTHON_VERSION }}
 
+     - name: Clear pip cache  # <--- ADICIONE ESTA LINHA
+       run: pip cache purge
+
       - name: 📚 Install Lint Dependencies
         run: |
           pip install --upgrade pip
