@@ -47,6 +47,11 @@ jobs:
         run: |
           flake8 backend --extend-ignore=E203,W503
 
+      - name: 🧪 Run Tests
+        run: |
+          cd backend/app
+          pytest
+
 
   test:
     name: 🧪 Run Backend Tests
