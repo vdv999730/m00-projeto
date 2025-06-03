@@ -9,7 +9,7 @@ on:
       - main
 
 env:
-  PYTHON_VERSION: 3.11
+  PYTHON_VERSION: 3.11  # Ajuste para a versão usada no backend
 
 jobs:
   lint:
@@ -31,8 +31,7 @@ jobs:
       - name: 📚 Install Lint Dependencies
         run: |
           pip install --no-cache-dir --upgrade pip
-          pip install --no-cache-dir -r backend/requirements.txt
-          pip install --force-reinstall pydantic-settings
+          pip install black flake8
           pip list
 
       - name: 🧽 Run Black (Code Formatter)
@@ -63,6 +62,7 @@ jobs:
         run: |
           pip install --no-cache-dir --upgrade pip
           pip install --no-cache-dir -r backend/requirements.txt
+          pip install pydantic-settings
           pip list
 
       - name: 🧪 Run Tests
