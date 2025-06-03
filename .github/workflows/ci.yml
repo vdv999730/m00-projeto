@@ -31,7 +31,8 @@ jobs:
       - name: 📚 Install Lint Dependencies
         run: |
           pip install --no-cache-dir --upgrade pip
-          pip install black flake8
+          pip install --no-cache-dir -r backend/requirements.txt
+          pip install --force-reinstall pydantic-settings
           pip list
 
       - name: 🧽 Run Black (Code Formatter)
