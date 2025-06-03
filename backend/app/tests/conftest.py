@@ -43,9 +43,16 @@ async def prepare_database():
         await conn.run_sync(Base.metadata.drop_all)
 
 
-# 5. AsyncClient Fixture para testes
+# 5. AsyncClient Fixture para testes de endpoints
 @pytest_asyncio.fixture
 async def async_client(app: FastAPI):
     transport = ASGITransport(app=app)
     async with AsyncClient(transport=transport, base_url="http://testserver") as client:
         yield client
+
+
+# 6. Fixture de AsyncSession para testes diretos no banco
+@pytest_asyncio.fixture
+async def async_session():
+    async with AsyncSessionLocal() as session:
+        yield session

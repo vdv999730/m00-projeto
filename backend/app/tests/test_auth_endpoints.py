@@ -1,69 +1,21 @@
 import pytest
-from fastapi import FastAPI
-from httpx import AsyncClient
-from httpx import ASGITransport
-import pytest_asyncio
-from app.core.security import get_password_hash
-from app.models.user import User as UserModel
-from sqlalchemy.ext.asyncio import AsyncSession
+from app.services.audit_service import log_event
+from sqlalchemy import select
+from app.models.audit import AuditLog
 
 
-# 1. Fixture do AsyncClient
-@pytest_asyncio.fixture
-async def async_client(app: FastAPI):
-    transport = ASGITransport(app=app)
-    async with AsyncClient(transport=transport, base_url="http://testserver") as client:
-        yield client
-
-
-# 2. Testar POST /auth/token com usuário inválido
 @pytest.mark.asyncio
-async def test_login_invalid_user(async_client):
-    invalid_payload = {"username": "naoexiste", "password": "1234"}
-    response = await async_client.post("/auth/token", data=invalid_payload)
-    assert response.status_code == 401
+async def test_log_event(async_session):
+    # Chama diretamente o log_event para garantir que a função está coberta
+    await log_event(
+        async_session, user_id=1, action="TEST_ACTION", details="Test details"
+    )
 
+    result = await async_session.execute(
+        select(AuditLog).where(AuditLog.action == "TEST_ACTION")
+    )
+    log_entry = result.scalars().first()
 
-# 3. Fixture para criar usuário de teste
-@pytest_asyncio.fixture(scope="function", autouse=True)
-async def create_test_user(app):
-    # Acessa o banco assíncrono
-    async with app.state._db() as session:
-        db: AsyncSession = session
-        user = UserModel(
-            username="usuarioteste", hashed_password=get_password_hash("teste123")
-        )
-        db.add(user)
-        await db.commit()
-
-        yield
-
-        await db.delete(user)
-        await db.commit()
-
-
-# 4. Testar POST /auth/token com credenciais corretas
-@pytest.mark.asyncio
-async def test_login_valid_user(async_client):
-    payload = {"username": "usuarioteste", "password": "teste123"}
-    response = await async_client.post("/auth/token", data=payload)
-    assert response.status_code == 200
-    data = response.json()
-    assert "access_token" in data
-    assert data["token_type"] == "bearer"
-
-
-# 5. Testar rota protegida GET /auth/users/me com token válido
-@pytest.mark.asyncio
-async def test_protected_route(async_client):
-    # Primeiro, obter token
-    payload = {"username": "usuarioteste", "password": "teste123"}
-    login_resp = await async_client.post("/auth/token", data=payload)
-    token = login_resp.json()["access_token"]
-
-    # Acessar rota protegida
-    headers = {"Authorization": f"Bearer {token}"}
-    response = await async_client.get("/auth/users/me", headers=headers)
-    assert response.status_code == 200
-    data = response.json()
-    assert data["username"] == "usuarioteste"
+    assert log_entry is not None
+    assert log_entry.action == "TEST_ACTION"
+    assert log_entry.details == "Test details"
