@@ -66,7 +66,7 @@ jobs:
       - name: 🧪 Run Tests
         working-directory: backend
         run: |
-          PYTHONPATH=$(pwd) pytest app/testsq
+          PYTHONPATH=$(pwd) pytest app/tests
 
   build_and_push_backend:
     name: 🐳 Build and Push Backend Docker Image
