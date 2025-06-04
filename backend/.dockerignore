@@ -19,3 +19,4 @@ node_modules/
 README.md
 venv/
 aqui
+backend/.pytest_cache/
