@@ -2,9 +2,14 @@ services:
   - type: web
     name: m00-backend
     env: docker
+    region: oregon
     plan: free
+    branch: main
     rootDir: backend
     autoDeploy: true
+    dockerfilePath: Dockerfile
+    buildCommand: ""
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: DATABASE_URL
         value: postgresql://matrix_db_2qsn_user:4vwvRr2W8HfEMQ7R78LKUGcKPMCe16lU@dpg-d0q819buibrs73dn90r0-a.oregon-postgres.render.com:5432/matrix_db_2qsn
@@ -12,15 +17,22 @@ services:
         value: 4f294976b1a2a6bda9ff8a598609108e246002bf32aa6c8788da008466cc3542
       - key: ALGORITHM
         value: HS256
-    dockerfilePath: Dockerfile
+      - key: ENV
+        value: production
+      - key: PORT
+        value: 8000
 
   - type: web
     name: m00-dashboard
     env: docker
+    region: oregon
     plan: free
+    branch: main
     rootDir: dashboard
     autoDeploy: true
     dockerfilePath: Dockerfile
+    buildCommand: ""
+    startCommand: streamlit run app.py --server.port $PORT --server.address 0.0.0.0
 
 databases:
   - name: m00-db

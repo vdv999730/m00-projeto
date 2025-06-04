@@ -1,4 +1,6 @@
-API_URL = "https://backend-d4gi.onrender.com"
+import os
+
+API_URL = os.getenv("API_URL", "https://backend-d4gi.onrender.com")
 
 import streamlit as st
 

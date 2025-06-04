@@ -1,6 +1,8 @@
 import streamlit as st
 import requests
-from app import API_URL
+import os
+
+API_URL = os.getenv("API_URL", "https://backend-d4gi.onrender.com")
 
 st.title("🔗 Status da API Backend")
 
